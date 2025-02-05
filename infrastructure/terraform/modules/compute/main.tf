@@ -13,6 +13,7 @@ resource "aws_instance" "rancher" {
 
   vpc_security_group_ids = var.security_group_ids
   key_name              = aws_key_pair.deployer.key_name
+  user_data            = file("${path.root}/scripts/install_docker.sh")
 
   root_block_device {
     volume_size = 8   
@@ -30,6 +31,7 @@ resource "aws_instance" "k3s" {
 
   vpc_security_group_ids = var.security_group_ids
   key_name              = aws_key_pair.deployer.key_name
+  user_data            = file("${path.root}/scripts/install_docker.sh")
 
   root_block_device {
     volume_size = 8    
